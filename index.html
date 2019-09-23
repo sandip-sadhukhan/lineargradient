@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Linear Gradient</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    #bodybg{
+        background-image : linear-gradient(to right,#f70289,#800fca);
+        width: 100%;
+        position:relative;
+        height: 100vh;
+        }
+        .main{
+            position: absolute;
+            text-align: center;
+            color:white;
+            top:35%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            width:70%;
+        }
+        h1{
+            font-size:70px;
+            font-family: sans-serif;
+            letter-spacing: 3px;
+            text-shadow:2px 3px 10px black;
+        }
+        p{
+            font-size: 30px;
+            text-shadow:2px 3px 10px black;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        input{
+            margin:10px;
+            box-shadow:2px 3px 9px black;
+        }
+        .subheading{
+            font-size: 30px;
+            margin-top: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #data{
+            margin-top:20px;
+            margin-bottom: 20px;
+            font-size:25px;
+            width:90%;
+            text-align: center;
+            font-family: consolas;
+            border:2px solid black;
+            padding:20px;
+            background-color:rgba(255,255,255,.3);
+            box-shadow: 2px 3px 9px black;
+        }
+        #data:hover{
+            background-color:rgba(255,255,255,.56);
+            color:black;
+            cursor: text;
+        }
+        button{
+            border:2px solid black;
+            cursor:pointer;
+            padding:10px 30px;
+            background-color: teal;
+            color:white;
+        }
+        /*media query*/
+        @media only screen and (max-width: 600px){
+            .main{
+                width:90%;
+            }
+            h1{
+                font-size:40px;
+            }
+            p,.subheading{
+                font-size: 20px;
+            }
+            #data{
+                font-size: 20px;
+                padding:5px;
+                overflow:auto; 
+                height: 100px;
+                
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div id="bodybg">
+        <div class="main">
+            <h1>Linear Gradient</h1><br>
+            <p>Pick Your colors</p><br>
+            <input type="color" id="colorone" value="#910896">
+            <input type="color" id="colortwo" value="#0817a3">
+            <div class="subheading">CSS Code </div>
+            <textarea id="data">background-image : linear-gradient(to right,#f70289,#800fca);</textarea>
+            <button onclick="copycode()">Click To Copy</button>
+        </div>
+    </div>
+    <script>
+        console.clear();
+
+    //Add event Listener
+    document.getElementById('colorone').addEventListener('change',bgchange);
+    document.getElementById('colortwo').addEventListener('change',bgchange);
+        //Background change
+        function bgchange(){
+        let colorone=document.getElementById('colorone').value;
+        let colortwo=document.getElementById('colortwo').value;
+        let val=document.getElementById('bodybg').style.backgroundImage=`linear-gradient(to right,${colorone},${colortwo})`;
+
+        document.querySelector('#data').value=`background-image : linear-gradient(to right,${colorone},${colortwo});`;
+    }
+    function copycode(){
+        var copytext=document.getElementById('data');
+        copytext.select();
+        document.execCommand("copy");
+    }
+    </script>
+</body>
+</html>
