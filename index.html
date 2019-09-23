@@ -100,13 +100,12 @@
             <input type="color" id="colorone" value="#910896">
             <input type="color" id="colortwo" value="#0817a3">
             <div class="subheading">CSS Code </div>
-            <textarea id="data" readonly >background-image : linear-gradient(to right,#f70289,#800fca);</textarea>
+            <textarea id="data" readonly>background-image : linear-gradient(to right,#910896,#0817a3);</textarea>
             <button onclick="copycode()">Click To Copy</button>
         </div>
     </div>
     <script>
-        console.clear();
-
+        getDataFromLs();
     //Add event Listener
     document.getElementById('colorone').addEventListener('change',bgchange);
     document.getElementById('colortwo').addEventListener('change',bgchange);
@@ -114,14 +113,31 @@
         function bgchange(){
         let colorone=document.getElementById('colorone').value;
         let colortwo=document.getElementById('colortwo').value;
+        setDataInLs(colorone,colortwo);
         let val=document.getElementById('bodybg').style.backgroundImage=`linear-gradient(to right,${colorone},${colortwo})`;
-
+        updateInput(colorone,colortwo);
+    }
+    function updateInput(colorone,colortwo){
         document.querySelector('#data').value=`background-image : linear-gradient(to right,${colorone},${colortwo});`;
     }
     function copycode(){
         var copytext=document.getElementById('data');
         copytext.select();
         document.execCommand("copy");
+    }
+    function getDataFromLs(){
+        if((localStorage.getItem('colorone')===null)||(localStorage.getItem('colortwo')===null)){
+            localStorage.setItem('colorone','#910896');
+            localStorage.setItem('colortwo','#0817a3');
+        }else{
+            document.getElementById('colorone').value=localStorage.getItem('colorone');
+            document.getElementById('colortwo').value=localStorage.getItem('colortwo');
+            bgchange();
+        }
+    }
+    function setDataInLs(colorone,colortwo){
+        localStorage.setItem('colorone',colorone);
+        localStorage.setItem('colortwo',colortwo);
     }
     </script>
 </body>
